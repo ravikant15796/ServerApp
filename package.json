@@ -19,5 +19,8 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^1.19.1"
+  },
+  "engines": {
+    "node": "8.11.3"
   }
 }
