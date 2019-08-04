@@ -13,6 +13,10 @@ class PropertyService {
         query = JSON.parse(JSON.stringify(query));
         return  await Property.find({citySlug:query.citySlug,enabled:true}).limit(8);
     }
+    async getPropertyDetails(query){
+        query = JSON.parse(JSON.stringify(query));
+        return await Property.findOne({slug:query.propertySlug});
+    }
 }
 
 module.exports = new PropertyService()

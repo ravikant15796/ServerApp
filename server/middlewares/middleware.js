@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 module.exports = function(app){
     app.use(function(req,res,next){
-        console.log(req.get('Origin'));
+        /*origin must be set*/
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();

@@ -12,6 +12,7 @@ class PropertyController extends  BaseController{
     }
    registerApiRoutes(){
         this.router.get(`${this.basePath}`,this.handleAsyncErrors(this.getProperties));
+       this.router.get(`${this.basePath}/:propertySlug`,this.handleAsyncErrors(this.getPropertyForSlug));
     }
 
     async getProperties(req,res){
@@ -38,6 +39,15 @@ class PropertyController extends  BaseController{
             amenities
         });
         res.send(properties);
+    }
+
+    async getPropertyForSlug(req,res){
+       let {
+         propertySlug
+        } = req.params;
+
+       let property = await PropertyService.getPropertyDetails({ propertySlug });
+       res.send(property);
     }
 }
 
