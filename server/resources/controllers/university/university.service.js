@@ -9,7 +9,7 @@ class UniversityService {
             "name": {
                 "$regex": name, "$options": "i"
             }
-        }).select("name city slug country citySlug countrySlug");
+        }).select("name city slug country citySlug countrySlug").limit(10);
     }
 }
 

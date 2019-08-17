@@ -14,7 +14,7 @@ class CityService{
             "name": {
                 "$regex": name, "$options": "i"
             }
-        }).select("name slug country countrySlug");
+        }).select("name slug country countrySlug").limit(10);
     }
 
 

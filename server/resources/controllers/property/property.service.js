@@ -23,7 +23,7 @@ class PropertyService {
                 "$regex": name, "$options": "i"
             },
             "enabled": true
-        }).select("name city slug country citySlug countrySlug");
+        }).select("name city slug country citySlug countrySlug").limit(10);
     }
 }
 
