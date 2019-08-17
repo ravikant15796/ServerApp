@@ -17,6 +17,14 @@ class PropertyService {
         query = JSON.parse(JSON.stringify(query));
         return await Property.findOne({slug:query.propertySlug});
     }
+    async findProperty(name) {
+        return Property.find({
+            "name": {
+                "$regex": name, "$options": "i"
+            },
+            "enabled": true
+        }).select("name city slug country citySlug countrySlug");
+    }
 }
 
 module.exports = new PropertyService()
