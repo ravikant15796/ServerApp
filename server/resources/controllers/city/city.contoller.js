@@ -11,7 +11,6 @@ class CityController extends BaseController{
         this.registerApiRoutes();
     }
     registerApiRoutes(){
-        console.log('****');
         this.router.get(`${this.basePath}`,this.handleAsyncErrors(this.getCityList));
         this.router.get(`${this.basePath}/:citySlug/properties`,this.handleAsyncErrors(this.getPropertyListing))
     }
@@ -29,9 +28,11 @@ class CityController extends BaseController{
             citySlug
         } = req.params;
 
-        let propertyListing = await PropertyService.getProperties({
-            citySlug
-        });
+        let {
+            page
+        } = req.query;
+
+        let propertyListing = await PropertyService.getProperties(citySlug, page);
         res.send(propertyListing);
     }
 }
