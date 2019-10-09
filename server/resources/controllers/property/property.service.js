@@ -14,7 +14,7 @@ class PropertyService {
     }
     async getPropertyDetails(query){
         query = JSON.parse(JSON.stringify(query));
-        return await Property.findOne({slug:query.propertySlug}).lean(true);
+        return  Property.findOne({slug:query.propertySlug}).lean(true);
     }
     async findProperty(name) {
         return Property.find({
