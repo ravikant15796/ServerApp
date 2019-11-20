@@ -1,4 +1,5 @@
 const PropertyService = require('./property.service');
+const CmsService = require('../cms/cms.service');
 const mongoose = require("mongoose");
 const Property = mongoose.model("Property");
 const fetch = require("node-fetch");
@@ -11,8 +12,9 @@ class PropertyController extends  BaseController{
         this.registerApiRoutes();
     }
    registerApiRoutes(){
-        this.router.get(`${this.basePath}`,this.handleAsyncErrors(this.getProperties));
-       this.router.get(`${this.basePath}/:propertySlug`,this.handleAsyncErrors(this.getPropertyForSlug));
+         this.router.get(`${this.basePath}`,this.handleAsyncErrors(this.getProperties));
+         this.router.get(`${this.basePath}/cms`,this.handleAsyncErrors(this.getCMSProperties));
+         this.router.get(`${this.basePath}/:propertySlug`,this.handleAsyncErrors(this.getPropertyForSlug));
     }
 
     async getProperties(req,res){
@@ -48,6 +50,10 @@ class PropertyController extends  BaseController{
 
        let property = await PropertyService.getPropertyDetails({ propertySlug });
        res.send(property);
+    }
+    async getCMSProperties(req,res){
+        let foundResult = await CmsService.getPoperties();
+        res.status(200).send(foundResult);
     }
 }
 

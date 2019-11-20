@@ -11,9 +11,7 @@ class CmsController extends BaseController{
         this.registerApiRoutes();
     }
     registerApiRoutes(){
-        this.router.get(`${this.basePath}/properties`,this.handleAsyncErrors(this.getProperties));
-        this.router.get(`${this.basePath}/change-url`,this.handleAsyncErrors(this.getProperties));
-
+        this.router.get(`${this.basePath}`,this.handleAsyncErrors(this.getProperties));
     }
     async getProperties(req,res) {
         let {enabled, featured} = req.params;
